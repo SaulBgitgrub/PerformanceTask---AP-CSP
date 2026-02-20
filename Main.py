@@ -1,74 +1,71 @@
-import sys
-#Credits to https://www.janbasktraining.com/ for the information regarding sys.exit()
+def get_bool(message, error = "---That wasn't an integer---"):
+    try:
+        return int(input(message))
+    except ValueError:
+        print(error)
+        get_bool(message, error)
 
-def menu():
-    return print("To begin the program input a number in order to access the Math Practice Tool!\n+ Type 1 in order to access the calculator.\n+ Type 2 if you need help understanding how the program works.\n+ Type 3 to exit the program\n-----")
-def sel(x):
+def stringify_operation(operation):
+    if operation == "/":
+        return "divide"
+    elif operation == "&":
+        return "multiply"
+    elif operation == "+":
+        return "add"
+    elif operation == "-":
+        return "subtract"
+    else:
+        return ""
+
+def help():
+    print("To begin the program input a number in order to access the Math Practice Tool!")
+    print("+ Type 1 in order to access the calculator.")
+    print("+ Type 2 if you need help understanding how the program works.")
+    print("+ Type 3 to exit the program")
+    print("-----")
+
+def main():
+    help()
+    selection()
+
+def selection():
+    x = input("Type Here: ")
     if x == "1":
         process()
     elif x == "2":
-        c2()
-        realmenu()
+        help_2()
     elif x == "3":
         print("Thank you for your time!")
-        #sys.exit() simply stops the entire program
-        sys.exit()
+        return
     else:
         print("Invalid expression")
-    return realmenu()
-def exit():
-    pass
-def c2():
-    print("-----\nIn order to use the calculator, you just have to type in one of the following symbols ( -, +, *, or / ). \nThe user is returned to the main menu after a calculation or when they add an invalid expression.\n -----")
-    realmenu()
-def divpro(x,y):
-    total = x/y
-    return total
-def timespro(x,y):
-    total = x*y
-    return total
-def addpro(x,y):
-    total = x+y
-    return total
-def minpro(x,y):
-    total = x-y
-    return total
+
+    main()
+
+def help_2():
+    print("-----")
+    print("In order to use the calculator, you just have to type in one of the following symbols ( -, +, *, or / ). ")
+    print("The user is returned to the main menu after a calculation or when they add an invalid expression.")
+    print("-----")
+
 def process():
     decision = input("Which form of equation would you like to use: ")
+    if decision not in ["*", "/", "+", "-"]:
+        print("---Invalid symbol---")
+        return
+    operation = stringify_operation(decision)
+    x = get_bool(f"What is your first number you would like to {operation}: ")
+    y = get_bool(f"What is your second number you would like to {operation}: ")
     if decision == "/":
-        x = int(input("What is your first number you would like to divide: "))
-        y = int(input("What is your second number you would like to divide: "))
-        return divpro(x,y)
+        if y == 0:
+            print("No dividing by zero!")
+            return
+        print(x / y)
     elif decision == "*":
-        x = int(input("What is your first number you would like to multiply: "))
-        y = int(input("What is your second number you would like to multiply: "))
-        return timespro(x,y)
+        print(x * y)
     elif decision == "+":
-        x = int(input("What is your first number you would like to add: "))
-        y = int(input("What is your second number you would like to add: "))
-        return addpro(x,y)
+        print(x + y)
     elif decision == "-":
-        x = int(input("What is your first number you would like to subtract: "))
-        y = int(input("What is your second number you would like to subtract: "))
-        return minpro(x,y)
-    else:
-        print("Invalid symbol")
-        realmenu()
-def realmenu():
-    menu()
-    x = input("Type Here: ")
-    sel(x)
+        print(x - y)
 
-realmenu()
-
-# choice = input("Type Here: ")
-# if choice == "1":
-#     print(process())
-# elif choice == "2":
-#     c2()
-#     choice = input("Type Here: ")
-# elif choice == "3":
-#     print("Thank you for your time!")
-# else:
-#     print("Invalid expression")
-#     menu()
+main()
