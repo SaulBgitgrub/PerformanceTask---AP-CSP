@@ -8,7 +8,7 @@ def get_bool(message, error = "---That wasn't an integer---"):
 def stringify_operation(operation):
     if operation == "/":
         return "divide"
-    elif operation == "&":
+    elif operation == "*":
         return "multiply"
     elif operation == "+":
         return "add"
@@ -67,5 +67,5 @@ def process():
         print(x + y)
     elif decision == "-":
         print(x - y)
-
+        
 main()
