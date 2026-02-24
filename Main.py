@@ -60,12 +60,37 @@ def process():
         if y == 0:
             print("No dividing by zero!")
             return
-        print(x / y)
+        try:
+            print(x / y)
+        except TypeError:
+            print("---Calculation stopped due to previously input non-integar---")
     elif decision == "*":
-        print(x * y)
+        try:
+            print(x * y)
+        except TypeError:
+            print("---Calculation stopped due to previously input non-integar---")
     elif decision == "+":
-        print(x + y)
+        try:
+            print(x + y)
+        except TypeError:
+            print("---Calculation stopped due to previously input non-integar---")
     elif decision == "-":
-        print(x - y)
+        try:
+            print(x - y)
+        except TypeError:
+            print("---Calculation stopped due to previously input non-integar---")
         
+    #Previously used code that was scrapped
+    # if decision == "/":
+    #     if y == 0:
+    #         print("No dividing by zero!")
+    #         return
+    #     print(x / y)
+    # elif decision == "*":
+    #     print(x * y)
+    # elif decision == "+":
+    #     print(x + y)
+    # elif decision == "-":
+    #     print(x - y)
+
 main()
