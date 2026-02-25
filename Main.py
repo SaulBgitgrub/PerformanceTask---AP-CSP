@@ -42,29 +42,33 @@ def selection():
         print("Invalid expression")
 
     main()
+#This list has the valid symbols that can be input by the user. They aren't used in the help_2 function since they still have the ' symbol attached to each one ex: '+'
+valid_symbols = ["-", "+", "*", "/"]
 #This function is for the second option when the user types 2
 def help_2():
     print("-----")
-    print("In order to use the calculator, you just have to type in one of the following symbols ( -, +, *, or / ). ")
+    print("In order to use the calculator, you just have to type in one of the following symbols ( -, +, *, or / ).")
     print("The user is returned to the main menu after a calculation or when they add an invalid expression.")
     print("-----")
 #The calculator itself alongside its many options to handle errors is present in the process function.
 def process():
     decision = input("Which form of equation would you like to use: ")
-    if decision not in ["*", "/", "+", "-"]:
+    if decision not in valid_symbols:
         print("---Invalid symbol---")
         return
     operation = stringify_operation(decision)
     x = get_bool(f"What is your first number you would like to {operation}: ")
     y = get_bool(f"What is your second number you would like to {operation}: ")
     if decision == "/":
-        if y == 0:
-            print("No dividing by zero!")
-            return
-        try:
-            print(x / y)
-        except TypeError:
-            print("---Calculation stopped due to previously input non-integar---")
+        while y != 0:
+            try:
+                print(x / y)
+                break
+            except TypeError:
+                print("---Calculation stopped due to previously input non-integar---")
+                break
+        else:
+            return "No dividing by zero"
     elif decision == "*":
         try:
             print(x * y)
