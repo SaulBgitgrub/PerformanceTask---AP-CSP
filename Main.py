@@ -68,7 +68,7 @@ def process():
                 print("---Calculation stopped due to previously input non-integar---")
                 break
         else:
-            return "No dividing by zero"
+            return print("No dividing by zero!")
     elif decision == "*":
         try:
             print(x * y)
